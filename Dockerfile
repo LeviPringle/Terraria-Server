@@ -24,7 +24,7 @@ COPY run-vanilla.sh /vanilla/run.sh
 RUN chmod +x /vanilla/run.sh
 
 # Create non-root user
-RUN useradd -m -u 1000 terraria && chown -R terraria:terraria /vanilla && chown -R terraria:terraria /config
+#RUN useradd -m -u 1000 terraria && chown -R terraria:terraria /vanilla && chown -R terraria:terraria /config
 
 # Metadata
 ARG VCS_REF
@@ -40,4 +40,8 @@ VOLUME ["/config"]
 EXPOSE 7777/tcp 7777/udp
 
 HEALTHCHECK --interval=30s --timeout=5s CMD ss -ltn | grep -q ':7777' || exit 1
-USER terraria
+#USER terraria
+
+# Run the server
+WORKDIR /vanilla
+ENTRYPOINT ["./run.sh"]

@@ -13,7 +13,7 @@ services:
       PORT: "7777"
       MAX_PLAYERS: "8"
       TZ: "UTC"
-      #WORLD: "MyWorld.wld"
+#      WORLD: "test.wld"
     tty: true        # docker run -t
     stdin_open: true # docker run -i
     restart: unless-stopped
