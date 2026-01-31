@@ -1,13 +1,13 @@
 FROM debian:trixie-slim
 
 # Update and install needed utils
-RUN apt-get update && \
-    apt-get upgrade -y && \
-    apt-get install -y curl vim zip unzip && \
-    apt-get clean && \
+RUN apt update && \
+    apt upgrade -y && \
+    apt install -y curl unzip && \
+    apt clean && \
     rm -rf /var/lib/apt/lists/*
 
-# fix for favorites.json error
+# Fix for favorites.json error
 RUN favorites_path="/root/My Games/Terraria" && mkdir -p "$favorites_path" && echo "{}" > "$favorites_path/favorites.json"
 
 RUN mkdir /tmp/terraria && \
@@ -23,7 +23,7 @@ RUN mkdir /tmp/terraria && \
 COPY run-vanilla.sh /vanilla/run.sh
 RUN chmod +x /vanilla/run.sh
 
-# create non-root user
+# Create non-root user
 RUN useradd -m -u 1000 terraria && chown -R terraria:terraria /vanilla
 
 # Metadata
