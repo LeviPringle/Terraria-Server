@@ -5,7 +5,7 @@ services:
       - "7777:7777/tcp"
       - "7777:7777/udp"
     volumes:
-      - terraria_data:/config
+      - ./data:/config
     environment:
       PORT: "7777"
       MAX_PLAYERS: "8"
