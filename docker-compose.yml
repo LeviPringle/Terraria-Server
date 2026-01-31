@@ -1,0 +1,14 @@
+services:
+  terraria:
+    image: terraria-server:local
+    ports:
+      - "7777:7777/tcp"
+      - "7777:7777/udp"
+    volumes:
+      - terraria_data:/config
+    environment:
+      PORT: "7777"
+      MAX_PLAYERS: "8"
+      TZ: "UTC"
+      WORLD="MyWorld.wld"
+    restart: unless-stopped
