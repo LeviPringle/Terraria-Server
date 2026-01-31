@@ -24,7 +24,7 @@ COPY run-vanilla.sh /vanilla/run.sh
 RUN chmod +x /vanilla/run.sh
 
 # Create non-root user
-RUN useradd -m -u 1000 terraria && chown -R terraria:terraria /vanilla
+RUN useradd -m -u 1000 terraria && chown -R terraria:terraria /vanilla && chown -R terraria:terraria /config
 
 # Metadata
 ARG VCS_REF
@@ -40,10 +40,4 @@ VOLUME ["/config"]
 EXPOSE 7777/tcp 7777/udp
 
 HEALTHCHECK --interval=30s --timeout=5s CMD ss -ltn | grep -q ':7777' || exit 1
-
-# Add an entrypoint that fixes permissions on /config then drops to the terraria user
-COPY entrypoint.sh /usr/local/bin/entrypoint.sh
-RUN chmod +x /usr/local/bin/entrypoint.sh
-
-WORKDIR /vanilla
-ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+USER terraria
