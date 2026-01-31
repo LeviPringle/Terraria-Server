@@ -41,7 +41,9 @@ EXPOSE 7777/tcp 7777/udp
 
 HEALTHCHECK --interval=30s --timeout=5s CMD ss -ltn | grep -q ':7777' || exit 1
 
-# Run the server as non-root
-USER terraria
+# Add an entrypoint that fixes permissions on /config then drops to the terraria user
+COPY entrypoint.sh /usr/local/bin/entrypoint.sh
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
 WORKDIR /vanilla
-ENTRYPOINT ["./run.sh"]
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
