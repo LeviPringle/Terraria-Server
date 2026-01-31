@@ -25,9 +25,9 @@ COPY run-vanilla.sh /vanilla/run.sh
 # Metadata
 ARG VCS_REF
 LABEL org.opencontainers.image.revision=$VCS_REF
-LABEL org.opencontainers.image.source="https://github.com/beardedio/terraria"
+LABEL org.opencontainers.image.source="https://github.com/LeviPringle/Terraria-Server"
 LABEL org.opencontainers.image.licenses="MIT"
-LABEL org.opencontainers.image.description="Vanilla Terraria Server - Version 1453"
+LABEL org.opencontainers.image.description="Terraria Server"
 LABEL VANILLA_VERSION=1453
 
 # Allow for external data
