@@ -1,5 +1,8 @@
 services:
   terraria:
+    build:
+      context: .
+      dockerfile: Dockerfile
     image: terraria-server:local
     ports:
       - "7777:7777/tcp"

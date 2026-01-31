@@ -3,7 +3,7 @@ FROM debian:trixie-slim
 # Update and install needed utils
 RUN apt-get update && \
     apt-get upgrade -y && \
-    apt-get install -y curl vim zip && \
+    apt-get install -y curl vim zip unzip && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
